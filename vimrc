@@ -59,7 +59,9 @@ set background=dark
 syntax on " syntax highlighting
 colorscheme blackboard
  
- 
+" Line nubers
+set number
+
 " Status Line 
 set showcmd
 set ruler " Show ruler
