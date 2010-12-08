@@ -8,9 +8,16 @@
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
 "Set Mapleader
 let mapleader = ","
 let g:mapleader = ","
+
+nmap <leader>V :tabedit $MYVIMRC<CR>
 
 set nocompatible
  
@@ -52,7 +59,12 @@ set incsearch " incremental search, search as you type
 set ignorecase " Ignore case when searching
 set smartcase " Ignore case when searching lowercase
  
- 
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
 " Colors 
 set t_Co=256 " 256 colors
 set background=dark
@@ -69,7 +81,7 @@ set ruler " Show ruler
  
  
 " Line Wrapping 
-set nowrap
+set wrap
 set linebreak " Wrap at word
  
  
@@ -79,3 +91,33 @@ imap jj <Esc>
 imap uu _
 imap hh =>
 imap aa @filetype plugin indent on
+
+" Set tabstop, softtabstop and shiftwidth to the same value
+command! -nargs=* Stab call Stab()
+function! Stab()
+  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
+  if l:tabstop > 0
+    let &l:sts = l:tabstop
+    let &l:ts = l:tabstop
+    let &l:sw = l:tabstop
+  endif
+  call SummarizeTabs()
+endfunction
+ 
+function! SummarizeTabs()
+  try
+    echohl ModeMsg
+    echon 'tabstop='.&l:ts
+    echon ' shiftwidth='.&l:sw
+    echon ' softtabstop='.&l:sts
+    if &l:et
+      echon ' expandtab'
+    else
+      echon ' noexpandtab'
+    endif
+  finally
+    echohl None
+  endtry
+endfunction
+
+
