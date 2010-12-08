@@ -28,12 +28,28 @@ set tabstop=2
 set expandtab
 set sta " a <Tab> in an indent inserts 'shiftwidth' spaces
  
- 
+if has("autocmd")
+  " Enable file type detection
+  filetype on
+
+  " Syntax of these languages is fussy over tabs vs spaces
+  autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+  " Customizations based on person preferences
+  autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+  autocmd FileType text setlocal ts=2 sts=2 sw=2 expandtab formatoptions=taq 
+  
+  " Treat .rss files as XML
+  autocmd BufNewFile,BufRead *.rss setfiletype xml
+endif
+
 " Indenting
 set ai " Automatically set the indent of a new line (local to buffer)
 set si " smartindent  (local to buffer)
- 
- 
+  
 " Scrollbars 
 set sidescrolloff=2
 set numberwidth=4
@@ -71,7 +87,7 @@ set background=dark
 syntax on " syntax highlighting
 colorscheme blackboard
  
-" Line nubers
+" Line numbers
 set number
 
 " Status Line 
