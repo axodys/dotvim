@@ -41,7 +41,8 @@ if has("autocmd")
   autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
   autocmd FileType text setlocal ts=2 sts=2 sw=2 expandtab formatoptions=taq 
-  
+  autocmd FileType markdown setlocal ts=2 sts=2 sw=2 expandtab formatoptions=taq tw=80
+
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
 endif
@@ -77,6 +78,10 @@ set smartcase " Ignore case when searching lowercase
  
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
+
+" Shortcuts to open file in browsers 
+nmap <leader>s :!open -a Safari %<CR><CR>
+nmap <leader>c :!open -a Google\ Chrome %<CR><CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
