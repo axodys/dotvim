@@ -41,7 +41,7 @@ if has("autocmd")
   autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
   autocmd FileType text setlocal ts=2 sts=2 sw=2 expandtab formatoptions=taq 
-  autocmd FileType markdown setlocal ts=2 sts=2 sw=2 expandtab formatoptions=taq tw=80
+  autocmd FileType markdown setlocal ts=2 sts=2 sw=2 expandtab formatoptions=taqw tw=80
 
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
