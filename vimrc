@@ -89,9 +89,14 @@ set listchars=tab:▸\ ,eol:¬
 " Colors 
 set t_Co=256 " 256 colors
 set background=dark
-syntax on " syntax highlighting
-colorscheme blackboard
- 
+syntax enable " syntax highlighting
+colorscheme solarized 
+if has('gui_running')
+  set background=light
+else
+  set background=dark
+endif
+
 " Line numbers
 set number
 
